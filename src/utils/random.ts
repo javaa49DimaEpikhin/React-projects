@@ -1,4 +1,3 @@
-export {};
 export function getRandomNumber(min: number,max: number,isMinInclusive: boolean = true,isMaxInclusive: boolean = false): number {
   if (max < min) {
     [min, max] = [max, min];
