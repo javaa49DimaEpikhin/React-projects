@@ -1,43 +1,21 @@
-import React from 'react';
-import { Input } from './components/Input';
-import { Timer } from './components/Timer';
-
-
+import React from "react";
+import { getRandomNumber } from "./utils/random";
+import { getRandomMatrix } from "./utils/random";
+import { getRandomArrayElement } from "./utils/random";
+import { getRandomDate } from "./utils/random";
 function App() {
-  const flexColumn: React.CSSProperties = { display: "flex", flexDirection: "column" }
-  const flexRow: React.CSSProperties = { display: "flex", flexDirection: "row" , 
-  justifyContent: "space-around", width: "50vw", marginTop: "4vh"}
-  const [cityCountries, setCityCountries] = React.useState<string[]>([]);
-  function inputProcessFun(value: string): string {
-    const cityCountriesFromInput: string[] = value.split("#");
-    let res:string = '';
-    if(cityCountriesFromInput.length % 2 != 0) {
-      res = "There should be even number of the country/cities"
-    } else {
-        setCityCountries(cityCountriesFromInput.slice());
-    }
-    return res;
-  }
-  function getTimers(): JSX.Element[] {
-    const res: JSX.Element[] = [];
-    for(let i = 0; i < cityCountries.length; i+=2) {
-      res.push(<div style={flexRow}>
-        <Timer cityOrCountry={cityCountries[i]} />
-        <Timer cityOrCountry={cityCountries[i + 1]} />
-      </div>)
-    }
+  console.log(getRandomNumber(5, 10));
+  console.log(getRandomNumber(5, 10, false, true));
+  console.log(getRandomNumber(10, 5));
 
-    return res;
-  }
+  const matrix = getRandomMatrix(3, 4, 5, 10);
+  console.log(matrix);
 
-  return <div style={flexColumn}>
-    <Input placeHolder={'enter city/countries separated by #'}
-     inputProcess={inputProcessFun}/>
-     {getTimers()}
-    
+  const colors = ["red", "green", "blue", "purple"];
+  console.log(getRandomArrayElement(colors));
 
-  </div>
-
+  const date = getRandomDate(2000, 2023);
+  console.log(date);
+  return <div></div>;
 }
-
 export default App;
